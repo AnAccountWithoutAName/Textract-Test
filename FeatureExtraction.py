@@ -42,10 +42,6 @@ def TableExtraction(blocks):
             Line_Hash_Map[block['Relationships'][0]['Ids'][0]] = block['Text']
         
     return List_of_tables,Line_Hash_Map
-
-
-
-
 def main():
     with open('.vscode\Blocks.json') as f:
         response = json.load(f)
@@ -53,15 +49,6 @@ def main():
         p.pprint(Lines["6691c3e1-07fa-44db-a850-9b9c76c3d142"])
         for i in Tables:
             i.makeTable(Lines)
-
-
-        
-        #p.pprint(Tables,Lines)
-
- 
-
-
-
 if __name__ == "__main__":
     main()
     
