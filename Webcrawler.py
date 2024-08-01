@@ -50,8 +50,8 @@ def Send_email(content):
 
         message = MIMEText(content)
 
-        message["To"] = "siddharth14122001@gmail.com"
-        message["From"] = "home14122001@gmail.com"
+        message["To"] = email_1
+        message["From"] = email_2
         message["Subject"] = "New versions of Textractor available"
 
         message_encoded = base64.urlsafe_b64encode(message.as_bytes()).decode()
@@ -64,14 +64,14 @@ def Send_email(content):
     return send_message
 
 def main():
+    with open("emails.txt",'r') as fname:
+        email_1,email_2 = fname.readlines()
+        email_1 = email_1.rstrip()
+        email_2 = email_2.rstrip()
     list_of_updates = ExtractNewVersions()
     if list_of_updates:
         composed_message = "The following updates are available after the specified date:\n" + "".join(list_of_updates)
-        Send_email(composed_message)
-                            
-        
-
-
+        Send_email(composed_message,email_1,email_2)
 
 if __name__ == "__main__":
     main()
